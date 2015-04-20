@@ -1,0 +1,17 @@
+{
+  "name": "node-brewerydb",
+  "version": "0.0.1",
+  "description": "Service library for www.brewerydb.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/index.js"
+  },
+  "author": "Daniel Ochoa <dannytenaglias@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "core-object": "1.1.0",
+    "rsvp": "3.0.18",
+    "superagent": "1.2.0",
+    "tape": "4.0.0"
+  }
+}

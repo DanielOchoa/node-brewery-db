@@ -22,7 +22,7 @@ module.exports = CoreObject.extend({
     this.args    = opts;
 
     this.request = new Request({
-      url: this_apiUrl,
+      url: this._apiUrl,
       apiKey: this._apiKey
     });
 

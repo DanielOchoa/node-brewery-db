@@ -10,6 +10,12 @@
   "license": "MIT",
   "devDependencies": {
     "core-object": "1.1.0",
+    "faucet": "0.0.1",
+    "gulp": "3.8.11",
+    "gulp-jshint": "1.10.0",
+    "gulp-shell": "0.4.1",
+    "gulp-watch": "4.2.4",
+    "jshint-stylish": "1.0.1",
     "rsvp": "3.0.18",
     "superagent": "1.2.0",
     "tape": "4.0.0"

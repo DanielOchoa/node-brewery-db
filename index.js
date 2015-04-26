@@ -4,22 +4,23 @@ var CoreObject = require('core-object');
 var Beers      = require('./lib/beers');
 var Request    = require('./lib/utils/request');
 
+var BREWERY_DB_URL = 'http://api.brewerydb.com/v2/';
 /**
  * node brewery db lib
  */
 
 module.exports = CoreObject.extend({
 
-  init: function(opts) {
+  init: function(options) {
 
-    opts = opts || {};
-    if (!opts.apiKey) {
+    options = options || {};
+    if (!options.apiKey) {
       throw new Error('apiKey property needs to be set.');
     }
 
-    this._apiUrl = 'http://api.brewerydb.com/v2/';
-    this._apiKey = opts.apiKey;
-    this.args    = opts;
+    this.apiUrl  = BREWERY_DB_URL;
+    this.apiKey  = options.apiKey;
+    this.options = options;
 
     this.request = new Request({
       url: this._apiUrl,
@@ -29,10 +30,14 @@ module.exports = CoreObject.extend({
   },
 
   beers: function(path, opts) {
+
     if (typeof path !== 'string') {
       opts = path;
       path = null;
     }
-    return new Beers(this.request, {path: path, opts: opts});
+
+    this._beers = this._beers || new Beers(this.request);
+    return this._beers.get({path: path, options: opts});
   }
+
 });

@@ -14,9 +14,11 @@ test('BreweryDb', function(t) {
   /apiKey property needs to be set/,
   'apiKey key/value in parameter object');
 
-  t.ok(new BreweryDb(key), 'can be instantiated.');
+  var breweryDb = new BreweryDb(key);
+  t.ok(breweryDb, 'can be instantiated.');
+  t.ok(breweryDb.apiKey, 'key is set');
 
-  t.test('beer', function(t) {
+  /*t.test('beer', function(t) {
     t.plan(1);
 
     var client = new BreweryDb(key);
@@ -27,5 +29,5 @@ test('BreweryDb', function(t) {
       t.fail('Should not catch');
     });
   });
-
+  */
 });

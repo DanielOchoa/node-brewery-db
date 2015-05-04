@@ -9,7 +9,6 @@
   "author": "Daniel Ochoa <dannytenaglias@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "core-object": "1.1.0",
     "faucet": "0.0.1",
     "gulp": "3.8.11",
     "gulp-jshint": "1.10.0",

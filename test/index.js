@@ -16,7 +16,7 @@ test('BreweryDb', function(t) {
 
   var breweryDb = new BreweryDb(key);
   t.ok(breweryDb, 'can be instantiated.');
-  t.ok(breweryDb.apiKey, 'key is set');
+  t.ok(breweryDb._apiKey, 'key is set');
 
   /*t.test('beer', function(t) {
     t.plan(1);

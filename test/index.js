@@ -2,8 +2,12 @@
 
 var test      = require('tape');
 var BreweryDb = require('../index');
+var sepia     = require('sepia');
+var Request   = require('../lib/utils/request');
+var _         = require('lodash');
 
 var key = {apiKey: 'someApiKey'};
+var url = 'http://api.brewerydb.com/v2/';
 
 test('BreweryDb', function(t) {
   t.plan(3);
@@ -18,7 +22,8 @@ test('BreweryDb', function(t) {
   t.ok(breweryDb, 'can be instantiated.');
   t.ok(breweryDb._apiKey, 'key is set');
 
-  /*t.test('beer', function(t) {
+  /*
+  t.test('beer', function(t) {
     t.plan(1);
 
     var client = new BreweryDb(key);
@@ -31,3 +36,20 @@ test('BreweryDb', function(t) {
   });
   */
 });
+
+
+test('lib - utils - request', function(t) {
+  t.plan(1);
+  var request = new Request({
+    url: url,
+    apiKey: key.apiKey
+  });
+
+  return request.get('beers', {name: 'Tecate'}).then(function(res) {
+    t.ok(_.isObject(res), 'response.body is an object');
+  }).catch(function(err) {
+     console.log('it failead');
+     console.log(err);
+  });
+});
+

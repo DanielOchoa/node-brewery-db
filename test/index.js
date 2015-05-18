@@ -39,17 +39,26 @@ test('BreweryDb', function(t) {
 
 
 test('lib - utils - request', function(t) {
-  t.plan(1);
   var request = new Request({
     url: url,
     apiKey: key.apiKey
   });
 
-  return request.get('beers', {name: 'Tecate'}).then(function(res) {
-    t.ok(_.isObject(res), 'response.body is an object');
-  }).catch(function(err) {
-     console.log('it failead');
-     console.log(err);
+  t.test('get index', function(ta) {
+    ta.plan(2);
+    return request.get('beers', {name: 'Tecate'}).then(function(res) {
+      ta.ok(_.isObject(res), 'response is an object');
+      ta.ok(_.isString(res.getBody('utf-8')));
+    });
   });
+
+
+  t.test('get by id', function(ta) {
+    ta.plan(1);
+    return request.get('beer', 'IPhAuu').then(function(res) {
+      ta.ok(_.isString(res.getBody('utf-8')), 'body is a string');
+    });
+  });
+
 });
 

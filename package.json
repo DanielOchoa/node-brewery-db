@@ -15,12 +15,12 @@
     "gulp-shell": "0.4.1",
     "gulp-watch": "4.2.4",
     "jshint-stylish": "1.0.1",
-    "sepia": "^2.0.1",
+    "sepia": "2.0.1",
     "tape": "4.0.0"
   },
   "dependencies": {
-    "lodash": "^3.8.0",
-    "request": "2.55.0",
-    "rsvp": "3.0.18"
+    "lodash": "3.8.0",
+    "rsvp": "3.0.18",
+    "then-request": "2.1.1"
   }
 }

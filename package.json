@@ -4,7 +4,8 @@
   "description": "Service library for www.brewerydb.com",
   "main": "index.js",
   "scripts": {
-    "test": "VCR_MODE=cache tape test/index.js | faucet"
+    "test": "VCR_MODE=cache tape test/*.js",
+    "ci-test":  "VCR_MODE=playback tape test/*.js | faucet"
   },
   "author": "Daniel Ochoa <dannytenaglias@gmail.com>",
   "license": "MIT",

@@ -3,6 +3,9 @@
 var sepia = require('sepia');
 
 module.exports = {
+  tecateId: 'IPhAuu',
+  apiKey: 'someApiKey',
+  url: 'http://api.brewerydb.com/v2/',
   sepia: {
     filterApiKey: function() {
       return sepia.filter({

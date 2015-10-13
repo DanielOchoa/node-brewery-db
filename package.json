@@ -4,13 +4,13 @@
   "description": "Service library for www.brewerydb.com",
   "main": "index.js",
   "scripts": {
-    "test": "VCR_MODE=cache tape test/index.js"
+    "test": "VCR_MODE=cache tape test/index.js | faucet"
   },
   "author": "Daniel Ochoa <dannytenaglias@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "faucet": "0.0.1",
-    "gulp": "3.8.11",
+    "gulp": "3.9.0",
     "gulp-jshint": "1.10.0",
     "gulp-shell": "0.4.1",
     "gulp-watch": "4.2.4",

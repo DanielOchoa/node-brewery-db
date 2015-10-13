@@ -1,0 +1,23 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "content-type": "application/json",
+    "date": "Tue, 13 Oct 2015 17:58:56 GMT",
+    "server": "Apache/2.4.16 (Amazon) OpenSSL/1.0.1k-fips PHP/5.5.28",
+    "vary": "User-Agent",
+    "x-powered-by": "PHP/5.5.28",
+    "x-ratelimit-limit": "400",
+    "x-ratelimit-remaining": "385",
+    "content-length": "51",
+    "connection": "Close"
+  },
+  "url": "http://api.brewerydb.com/v2/beer/IPhAuu/yeasts?key=someApiKey",
+  "time": 219,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "Content-Length": 0,
+      "Accept-Encoding": "gzip,deflate"
+    }
+  }
+}

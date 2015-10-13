@@ -49,7 +49,7 @@ test('lib - utils - request', function(t) {
     return request.get('beers', {name: 'Tecate'}).then(function(res) {
       ta.ok(_.isObject(res), 'response is an object');
       ta.ok(_.isString(res.getBody('utf-8')));
-    });
+    }).catch(ta.fail);
   });
 
 
@@ -57,7 +57,7 @@ test('lib - utils - request', function(t) {
     ta.plan(1);
     return request.get('beer', 'IPhAuu').then(function(res) {
       ta.ok(_.isString(res.getBody('utf-8')), 'body is a string');
-    });
+    }).catch(ta.fail);
   });
 
 });

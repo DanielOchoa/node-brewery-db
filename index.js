@@ -1,10 +1,8 @@
 'use strict';
 
-var Beers      = require('./lib/beers');
-var Request    = require('./lib/utils/request');
+var Request = require('./lib/utils/request');
 
 var BREWERY_DB_URL = 'http://api.brewerydb.com/v2/';
-module.exports = BreweryDb;
 
 /**
  * node brewery db lib
@@ -14,13 +12,13 @@ function BreweryDb(options) {
   options       = options || {};
   this._options = options;
   this._apiKey  = options.apiKey || process.env.breweryDbApiKey;
-
+  this._url     = options.url || BREWERY_DB_URL;
   if (!this._apiKey) {
     throw new Error('apiKey property needs to be set.');
   }
 
   this.request = new Request({
-    url: BREWERY_DB_URL,
+    url: this._url,
     apiKey: this._apiKey
   });
 }
@@ -29,12 +27,13 @@ function BreweryDb(options) {
  *
  * Should be:
  * var brew = new BreweryDb({apiKey:'sdfsdf'});
- * brew.beers.get({opts}); // opts is the params
+ * brew.beers({name: 'Tecate'}); // opts is the params
  * or
- * brew.beers.get('beerId');
+ * brew.beers({id: 'beerId'});
  *
  */
-BreweryDb.prototype.beers = function() {
-  this._beers = this._beers || new Beers(this.request);
-  return this._beers;
+BreweryDb.prototype.beers = function(params) {
+  return this.request.get('beers', params);
 };
+
+module.exports = BreweryDb;

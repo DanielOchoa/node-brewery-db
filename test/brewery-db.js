@@ -12,6 +12,8 @@ var _         = require('lodash');
  */
 helpers.sepia.filterApiKey();
 
+var client = new BreweryDb({apiKey: helpers.apiKey});
+
 /**
  *
  * Tests
@@ -33,8 +35,6 @@ test('BreweryDb can be instanciated', function(t) {
 test('can get a beer by name', function(t) {
   t.plan(3);
 
-  var client = new BreweryDb({apiKey: helpers.apiKey});
-
   return client.beers({name: 'Tecate'}).then(function(res) {
     t.ok(_.isObject(res));
     var data = res.data[0];
@@ -43,4 +43,13 @@ test('can get a beer by name', function(t) {
   }).catch(t.fail);
 });
 
+test('can get a beer by ids', function(t) {
+  t.plan(3);
+
+  return client.beers({ids:'ujPz4L,IPhAuu'}).then(function(res) {
+    t.isEqual(res.data.length, 2);
+    t.isEqual(res.data[0].name, 'Corona Extra');
+    t.isEqual(res.data[1].name, 'Tecate');
+  });
+});
 

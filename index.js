@@ -33,7 +33,9 @@ function BreweryDb(options) {
  *
  */
 BreweryDb.prototype.beers = function(params) {
-  return this.request.get('beers', params);
+  return this.request.get('beers', params).then(function(res) {
+    return JSON.parse(res.getBody('utf-8'));
+  });
 };
 
 module.exports = BreweryDb;

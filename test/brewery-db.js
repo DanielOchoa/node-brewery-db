@@ -31,12 +31,15 @@ test('BreweryDb can be instanciated', function(t) {
 });
 
 test('can get a beer by name', function(t) {
-  t.plan(1);
+  t.plan(3);
 
   var client = new BreweryDb({apiKey: helpers.apiKey});
 
   return client.beers({name: 'Tecate'}).then(function(res) {
-    t.ok(_.isString(res.getBody('utf-8')), 'body is an object');
+    t.ok(_.isObject(res));
+    var data = res.data[0];
+    t.isEqual(data.name, 'Tecate');
+    t.isEqual(data.id, 'IPhAuu');
   }).catch(t.fail);
 });
 

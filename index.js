@@ -38,4 +38,11 @@ BreweryDb.prototype.beers = function(params) {
   });
 };
 
+BreweryDb.prototype.beer = function(id, extras) {
+  var extra = extras ? '/' + extras : '';
+  return this.request.get('beer/' + id + extra).then(function(res) {
+    return JSON.parse(res.getBody('utf-8'));
+  });
+}
+
 module.exports = BreweryDb;

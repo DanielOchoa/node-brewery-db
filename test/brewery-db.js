@@ -53,6 +53,16 @@ test('can get a beer by ids', function(t) {
   }).catch(t.fail);
 });
 
+test('can get page two of beers with abv between 5.3 and 5', function(t) {
+  t.plan(3);
+
+  return client.beers({abv: '4.3,5', p: 2}).then(function(res) {
+    t.isEqual(res.currentPage, 2);
+    t.isEqual(res.numberOfPages, 92);
+    t.isEqual(res.data[0].name, '5th Anniversary');
+  });
+});
+
 test('can get single beer from id', function(t) {
   t.plan(2);
 

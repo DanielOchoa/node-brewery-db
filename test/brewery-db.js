@@ -43,6 +43,64 @@ test('can get a beer by name', function(t) {
   }).catch(t.fail);
 });
 
+test('can get a beer by name as a callback', function(t) {
+  t.plan(1);
+
+  client.beers({name: 'Tecate'}, function(err, res) {
+    if (err) {
+      t.fail(err);
+    }
+    t.isEqual(res.data[0].name, 'Tecate');
+  });
+});
+
+/**
+ * triggering errors
+ */
+test('will trigger the err callback if it should', function(t) {
+  t.plan(4);
+
+  client.beers({wrongParamForBeer: 'yup. this is wrong'}, function(err, res) {
+    t.ok(err, 'We got an error');
+    t.isEqual(err.status, 'failure');
+    t.isEqual(err.errorMessage, 'The data passed to this method was invalid');
+    t.isEqual(res, null);
+  });
+});
+
+test('will trigger err if it should', function(t) {
+  t.plan(2);
+
+  return client.beers({wrongParamForBeer: 'yup...'}).then(t.fail).catch(function(err) {
+    t.ok(err);
+    t.isEqual(err.errorMessage, 'The data passed to this method was invalid');
+  });
+});
+
+test('will trigger error for invalid nested resource for beers as promise', function(t) {
+  t.plan(2);
+
+  return client.beer('IPhAuu', 'eventzz').then(t.fail).catch(function(err) {
+    console.log(err);
+    t.ok(err);
+    t.isEqual(err.errorMessage, 'The endpoint you requested could not be found');
+  });
+});
+
+test('will trigger error for invalid nested resource as callback', function(t) {
+  t.plan(3);
+
+  client.beer('IPhAuu', 'eventzz', function(err, res) {
+    t.ok(err);
+    t.isEqual(err.errorMessage, 'The endpoint you requested could not be found');
+    t.isEqual(res, null);
+  });
+});
+
+/*
+ *
+ */
+
 test('can get a beer by ids', function(t) {
   t.plan(3);
 
@@ -78,5 +136,43 @@ test('can get a brewery from a beer', function(t) {
   return client.beer('ujPz4L', 'breweries').then(function(res) {
     t.isEqual(res.data[0].name, 'Grupo Modelo S.A. de C.V.');
     t.isEqual(res.data[0].id, 'wadu38');
+  }).catch(t.fail);
+});
+
+test('can get ingredients for beer', function(t) {
+  t.plan(1);
+
+  return client.beer('ujPz4L', 'ingredients').then(function(res) {
+    t.isEqual(res.message, 'Request Successful');
+  });
+});
+
+/**
+ *
+ * Styles
+ *
+ */
+test('can get list of styles as promise', function(t) {
+  t.plan(1);
+
+  return client.styles().then(function(res) {
+    t.isEqual(res.data[0].name, 'Classic English-Style Pale Ale');
+  }).catch(t.fail);
+});
+
+test('can get a list of styles with callback', function(t) {
+  t.plan(2);
+
+  client.styles(function(err, res) {
+    t.isEqual(err, null);
+    t.isEqual(res.data[0].name, 'Classic English-Style Pale Ale');
+  });
+});
+
+test('can get individual style by id', function(t) {
+  t.plan(1);
+
+  return client.style('160').then(function(res) {
+    t.isEqual(res.data.id, 160);
   }).catch(t.fail);
 });

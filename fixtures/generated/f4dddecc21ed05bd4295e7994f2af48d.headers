@@ -1,0 +1,21 @@
+{
+  "statusCode": 404,
+  "headers": {
+    "content-type": "application/json",
+    "date": "Mon, 19 Oct 2015 20:41:50 GMT",
+    "server": "Apache/2.4.16 (Amazon) OpenSSL/1.0.1k-fips PHP/5.5.28",
+    "vary": "User-Agent",
+    "x-powered-by": "PHP/5.5.28",
+    "content-length": "83",
+    "connection": "Close"
+  },
+  "url": "http://api.brewerydb.com/v2/beer/IPhAuu/eventzz?key=someApiKey",
+  "time": 312,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "Content-Length": 0,
+      "Accept-Encoding": "gzip,deflate"
+    }
+  }
+}

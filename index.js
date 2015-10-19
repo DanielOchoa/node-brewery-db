@@ -1,6 +1,7 @@
 'use strict';
 
 var Request = require('./lib/utils/request');
+var RSVP = require('rsvp');
 
 var BREWERY_DB_URL = 'http://api.brewerydb.com/v2/';
 
@@ -23,26 +24,79 @@ function BreweryDb(options) {
   });
 }
 
+module.exports = BreweryDb;
+
 /**
  *
- * Should be:
- * var brew = new BreweryDb({apiKey:'sdfsdf'});
- * brew.beers({name: 'Tecate'}); // opts is the params
- * or
- * brew.beers({id: 'beerId'});
+ * Beers
  *
  */
-BreweryDb.prototype.beers = function(params) {
-  return this.request.get('beers', params).then(function(res) {
-    return JSON.parse(res.getBody('utf-8'));
-  });
+BreweryDb.prototype.beers = function(params, callback) {
+  return requestPromiseChain(this.request.get('beers', params), callback);
 };
 
-BreweryDb.prototype.beer = function(id, extras) {
+BreweryDb.prototype.beer = function(id, extras, callback) {
   var extra = extras ? '/' + extras : '';
-  return this.request.get('beer/' + id + extra).then(function(res) {
-    return JSON.parse(res.getBody('utf-8'));
-  });
+  return requestPromiseChain(this.request.get('beer/' + id + extra), callback);
 }
 
-module.exports = BreweryDb;
+/**
+ *
+ * Styles
+ *
+ */
+
+BreweryDb.prototype.styles = function(params, callback) {
+  if (typeof(params) === 'function') {
+    callback = params;
+    params = null;
+  }
+  return requestPromiseChain(this.request.get('styles', params), callback);
+}
+
+BreweryDb.prototype.style = function(id, params, callback) {
+  return requestPromiseChain(this.request.get('style/' + id, params), callback);
+}
+
+/**
+ *
+ * Private
+ *
+ */
+
+function requestPromiseChain(reqPromise, callback) {
+  return reqPromise.then(parseBody)
+    .then(handleCallbackOrPromise(callback))
+    .catch(handleCallbackError(callback));
+}
+
+function parseBody(res) {
+  return JSON.parse(res.getBody('utf-8'));
+}
+
+function handleCallbackOrPromise(callback) {
+  return function handleCallbackOrPromise(res) {
+    if (callback) {
+      return callback(null, res);
+    }
+    return res;
+  }
+}
+
+// parse body would have not triggered if it failed...
+// should we return raw response?
+// TODO: add option to get header, status code, etc from raw response.
+function handleCallbackError(callback) {
+  return function handleCallbackError(res) {
+    var parsedError;
+    try {
+      parsedError = JSON.parse(res.body.toString('utf-8'));
+    } catch(e) {
+      parsedError = e;
+    }
+    if (callback) {
+      return callback(parsedError, null);
+    }
+    return RSVP.reject(parsedError);
+  }
+}

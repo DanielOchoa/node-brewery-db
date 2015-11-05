@@ -176,3 +176,27 @@ test('can get individual style by id', function(t) {
     t.isEqual(res.data.id, 160);
   }).catch(t.fail);
 });
+
+/**
+ *
+ * Brewery
+ *
+ */
+test('can get breweries for name Saint Arnold as promise', function(t) {
+  t.plan(1);
+
+  return client.breweries({name: 'Saint Arnold Brewing Company'}).then(function(res) {
+    t.isEqual(res.data[0].id, 'H3UW27');
+  }).catch(t.fail);
+});
+
+test('can get breweries for name Saint Arnold with callback', function(t) {
+  t.plan(1);
+
+  client.breweries({name: 'Saint Arnold Brewing Company'}, function(err, res) {
+    if (err) {
+      t.fail(err);
+    }
+    t.isEqual(res.data[0].id, 'H3UW27');
+  });
+})

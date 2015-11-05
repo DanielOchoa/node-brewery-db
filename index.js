@@ -60,6 +60,19 @@ BreweryDb.prototype.style = function(id, params, callback) {
 
 /**
  *
+ * Brewery
+ *
+ */
+BreweryDb.prototype.breweries = function(params, callback) {
+  if (typeof(params) === 'function') {
+    callback = params;
+    params = null;
+  }
+  return requestPromiseChain(this.request.get('breweries', params), callback);
+}
+
+/**
+ *
  * Private
  *
  */
@@ -83,8 +96,6 @@ function handleCallbackOrPromise(callback) {
   }
 }
 
-// parse body would have not triggered if it failed...
-// should we return raw response?
 // TODO: add option to get header, status code, etc from raw response.
 function handleCallbackError(callback) {
   return function handleCallbackError(res) {

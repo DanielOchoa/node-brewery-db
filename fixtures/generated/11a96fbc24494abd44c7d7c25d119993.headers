@@ -1,0 +1,24 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "content-encoding": "gzip",
+    "content-type": "application/json",
+    "date": "Thu, 05 Nov 2015 02:33:30 GMT",
+    "server": "Apache/2.4.16 (Amazon) OpenSSL/1.0.1k-fips PHP/5.5.28",
+    "vary": "Accept-Encoding,User-Agent",
+    "x-powered-by": "PHP/5.5.28",
+    "x-ratelimit-limit": "400",
+    "x-ratelimit-remaining": "390",
+    "content-length": "16214",
+    "connection": "Close"
+  },
+  "url": "http://api.brewerydb.com/v2/brewery/H3UW27/beers?key=someApiKey",
+  "time": 805,
+  "request": {
+    "method": "GET",
+    "headers": {
+      "Content-Length": 0,
+      "Accept-Encoding": "gzip,deflate"
+    }
+  }
+}

@@ -63,6 +63,11 @@ BreweryDb.prototype.breweries = function(params, callback) {
   return buildResourceFor.call(this, 'breweries', params, callback);
 }
 
+BreweryDb.prototype.brewery = function(id, extras, callback) {
+  var extra = extras ? '/' + extras : '';
+  return requestPromiseChain(this.request.get('brewery/' + id + extra), callback);
+}
+
 /**
  *
  * Private

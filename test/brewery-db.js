@@ -200,3 +200,13 @@ test('can get breweries for name Saint Arnold with callback', function(t) {
     t.isEqual(res.data[0].id, 'H3UW27');
   });
 })
+
+test('can fetch beers for brewery as promised', function(t) {
+  t.plan(2);
+
+  return client.brewery('H3UW27', 'beers').then(function(res) {
+    t.isEqual(res.message, 'Request Successful');
+    var beerName = _.result(_.find(res.data, 'id', 'jPbb33'), 'name');
+    t.isEqual(beerName, 'Saint Arnold Fancy Lawnmower');
+  }).catch(t.fail);
+});

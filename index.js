@@ -47,11 +47,7 @@ BreweryDb.prototype.beer = function(id, extras, callback) {
  */
 
 BreweryDb.prototype.styles = function(params, callback) {
-  if (typeof(params) === 'function') {
-    callback = params;
-    params = null;
-  }
-  return requestPromiseChain(this.request.get('styles', params), callback);
+  return buildResourceFor.call(this, 'styles', params, callback);
 }
 
 BreweryDb.prototype.style = function(id, params, callback) {
@@ -64,11 +60,7 @@ BreweryDb.prototype.style = function(id, params, callback) {
  *
  */
 BreweryDb.prototype.breweries = function(params, callback) {
-  if (typeof(params) === 'function') {
-    callback = params;
-    params = null;
-  }
-  return requestPromiseChain(this.request.get('breweries', params), callback);
+  return buildResourceFor.call(this, 'breweries', params, callback);
 }
 
 /**
@@ -76,6 +68,13 @@ BreweryDb.prototype.breweries = function(params, callback) {
  * Private
  *
  */
+function buildResourceFor(verb, params, callback) {
+   if (typeof(params) === 'function') {
+    callback = params;
+    params = null;
+  }
+  return requestPromiseChain(this.request.get(verb, params), callback);
+}
 
 function requestPromiseChain(reqPromise, callback) {
   return reqPromise.then(parseBody)

@@ -32,7 +32,8 @@ You can access the restful resources from BreweryDB as follows:
 ### For Beers
 
 For the beers endpoint, just call the `beers` method and pass in any extra
-parameters from the BreweryDB docs. For example, to get a beer by name:
+parameters from the [BreweryDB docs](http://www.brewerydb.com/developers/docs-endpoint/beer_index).
+For example, to get a beer by name:
 
 ```javascript
 client.beers({name: 'Tecate'}, function(err, res) {
@@ -61,8 +62,9 @@ client.beer('IPhAuu', function(err, res) {
 });
 ```
 
-You can also get nested resources for any given resource that allows it. (See
-BreweryDB docs), for example, beers take a nested resource:
+You can also get nested resources for any given resource that allows it, see
+the [BreweryDB docs](http://www.brewerydb.com/developers/docs-endpoint/beer_brewery).
+For example, beers take a nested resource:
 
 ```javascript
 client.beer('IPhAuu', 'breweries', function(err, res) {
@@ -71,7 +73,10 @@ client.beer('IPhAuu', 'breweries', function(err, res) {
 });
 ```
 
+You can also access any other nested resource for a beer, such as adjunt, event
+and fermentable.
+
 ## TODO
 
-So far we can access beer/beers, nested resources for beer, styles,
+So far we can access beer/beers, nested resources for beer, styles and
 brewery/breweries. Work needs to be done to access other resources.

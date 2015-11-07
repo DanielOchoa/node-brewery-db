@@ -1,6 +1,6 @@
 {
   "name": "node-brewerydb",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Service library for www.brewerydb.com",
   "main": "index.js",
   "scripts": {

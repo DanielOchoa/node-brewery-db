@@ -70,6 +70,19 @@ BreweryDb.prototype.brewery = function(id, extras, callback) {
 
 /**
  *
+ * Adjuncts
+ *
+ */
+BreweryDb.prototype.adjuncts = function(params, callback) {
+  return buildResourceFor.call(this, 'adjuncts', params, callback);
+}
+
+BreweryDb.prototype.adjunct = function(id, callback) {
+  return requestPromiseChain(this.request.get('adjunct/' + id), callback);
+}
+
+/**
+ *
  * Private
  *
  */

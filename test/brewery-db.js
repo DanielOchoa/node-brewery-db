@@ -210,3 +210,54 @@ test('can fetch beers for brewery as promised', function(t) {
     t.isEqual(beerName, 'Saint Arnold Fancy Lawnmower');
   }).catch(t.fail);
 });
+
+/**
+ *
+ * Adjuncts
+ *
+ */
+test('can fetch adjuncts as promised', function(t) {
+  t.plan(1);
+
+  return client.adjuncts().then(function(res) {
+    t.isEqual(res.data[0].name, 'Acid Blend');
+  }).catch(t.fail);
+});
+
+test('can fetch adjuncts as callback', function(t) {
+  t.plan(1);
+
+  return client.adjuncts(function(err, res) {
+    if (err) {
+      t.fail(err);
+    }
+    t.isEqual(res.totalResults, 684);
+  });
+});
+
+test('can fetch adjuncts with params', function(t) {
+  t.plan(1);
+
+  return client.adjuncts({p: 2}).then(function(res) {
+    t.isEqual(res.currentPage, 2);
+  }).catch(t.fail);
+});
+
+test('can fetch adjunct by id as promise', function(t) {
+  t.plan(1);
+
+  return client.adjunct(877).then(function(res) {
+    t.isEqual(res.data.name, 'Agardhs Red Weed Gel');
+  }).catch(t.fail);
+});
+
+test('can fetch adjunct by id as callback with param', function(t) {
+  t.plan(1);
+
+  client.adjunct(876, function(err, res) {
+    if (err) {
+      t.fail(err);
+    }
+    t.isEqual(res.data.name, 'Acid Blend');
+  });
+});

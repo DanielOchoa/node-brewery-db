@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/DanielOchoa/node-brewery-db.svg?branch=master)](https://travis-ci.org/DanielOchoa/node-brewery-db)
 
 This is a node package (WIP) wrapper for the [http://www.brewerydb.com/](BreweryDB) service
-API.
+API. It supports both callbacks and promises. See below for usage.
 
 ## Setup
 
@@ -80,3 +80,19 @@ and fermentable.
 
 So far we can access beer/beers, nested resources for beer, styles and
 brewery/breweries. Work needs to be done to access other resources.
+
+## Developing
+
+ - Clone package.
+ - `cd` into the directory.
+ - Make sure you have at least v 10.x of node.
+ - `npm install`
+ - `npm install -g gulp`
+ - `npm run test` to run the tests.
+ - `gulp` for running tests and to watch for changes in files to re-run tests.
+
+The library uses Sepia and tape to record requests and play them back so as to
+not depend on actual http requests when running tests. This can sometimes be a
+little difficult to debug.
+
+**NOTE:** You need to use a real api key to record a request for the first time.

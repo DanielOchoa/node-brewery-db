@@ -9,6 +9,7 @@
   },
   "author": "Daniel Ochoa <dannytenaglias@gmail.com>",
   "license": "MIT",
+  "repository": "https://github.com/DanielOchoa/node-brewery-db",
   "devDependencies": {
     "faucet": "0.0.1",
     "gulp": "3.9.0",

@@ -81,6 +81,11 @@ and fermentable.
 So far we can access beer/beers, nested resources for beer, styles and
 brewery/breweries. Work needs to be done to access other resources.
 
+ - On settings, let implementor choose Promise lib (RSVP, Bluebird, etc.)
+ - Extract private methods in index.js to it's own helper file.
+ - Finish endpoints.
+ - More testing.
+
 ## Developing
 
  - Clone package.

@@ -4,7 +4,7 @@
   "description": "Service library for www.brewerydb.com",
   "main": "index.js",
   "scripts": {
-    "test":  "VCR_MODE=playback tape test/*.js | faucet",
+    "test": "VCR_MODE=playback tape test/*.js | faucet",
     "test-manually": "VCR_MODE=cache tape test/*.js"
   },
   "author": "Daniel Ochoa <dannytenaglias@gmail.com>",
@@ -12,17 +12,17 @@
   "repository": "https://github.com/DanielOchoa/node-brewery-db",
   "devDependencies": {
     "faucet": "0.0.1",
-    "gulp": "3.9.0",
-    "gulp-jshint": "1.10.0",
-    "gulp-shell": "0.4.1",
-    "gulp-watch": "4.2.4",
-    "jshint-stylish": "1.0.1",
-    "sepia": "2.0.1",
-    "tape": "4.0.0"
+    "gulp": "4.0.2",
+    "gulp-jshint": "2.1.0",
+    "gulp-shell": "0.8.0",
+    "gulp-watch": "5.0.1",
+    "jshint-stylish": "2.2.1",
+    "sepia": "2.0.2",
+    "tape": "4.13.2"
   },
   "dependencies": {
-    "lodash": "3.8.0",
-    "rsvp": "3.0.18",
-    "then-request": "2.1.1"
+    "lodash": "4.17.15",
+    "rsvp": "^4.8.5",
+    "then-request": "^6.0.2"
   }
 }
